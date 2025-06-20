@@ -7,11 +7,10 @@ const indexRouter = require('./routes/indexRouter')
 const assetsPath = path.join(__dirname, 'public')
 app.use(express.static(assetsPath));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.set('views', 'views');
 app.set('view engine', 'ejs');
-
-console.log(assetsPath)
 
 const PORT = process.env.PORT;
 

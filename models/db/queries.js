@@ -1,4 +1,5 @@
 const pool = require('./pool');
+const bcrypt = require('bcryptjs');
 
 const resetDb = async () => {
   const SQL = `
@@ -8,7 +9,11 @@ const resetDb = async () => {
   await pool.query(SQL);
 }
 
-const createUser = async (user) => {
+const createUser = async (input) => {
+  const user = {...input, password: bcrypt.hashSync(input.password, 10)};
+  if(user.isAdmin === undefined) {
+    user.isAdmin = false;
+  }
   const values = Object.values(user);
   const SQL = `
   INSERT INTO users
