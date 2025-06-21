@@ -14,8 +14,11 @@ module.exports = {
     res.render('login');
   },
   createUser: async (req, res) => {
-    await db.createUser(req.body);
-    res.send('welcome');
+    const user = await db.createUser(req.body);
+    req.login(user, (err) => {
+      if (err) return next(err);
+      return res.send('Logged in.');
+    })
   },
   loginUser: (req, res) => {
     res.render('welcome');
