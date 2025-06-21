@@ -1,5 +1,4 @@
 const express = require('express');
-const authenticateUser = require('../utils/authenticateUser')
 
 const router = express.Router();
 

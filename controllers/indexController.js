@@ -1,7 +1,7 @@
 const db = require('../models/db/queries');
 const passport = require('../config/passport');
 const verifyCode = require('../utils/verifyCode');
-const getMessages = require('../utils/getMessages');
+const getClubMessages = require('../utils/getClubMessages');
 const authorizeMember = require('../utils/authorizeMember');
 
 module.exports = {
@@ -31,7 +31,7 @@ module.exports = {
     res.render('welcome');
   },
 
-  joinClub: [verifyCode, getMessages],
+  joinClub: [verifyCode, getClubMessages],
 
-  getHomepage: [authorizeMember, getMessages]
+  getHomepage: [authorizeMember, getClubMessages]
 }
