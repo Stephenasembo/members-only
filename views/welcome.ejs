@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=], initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    We welcome you to our clubhouse.
+    <br><br>
+    We are delighted to have you here,
+    we will do our best to make your stay here memorable.
+    <br><br>
+    Input the secret code to become a member of our club.
+    <br><br>
+    <form action="/welcome" method="post">
+      <label for="secretCode">
+        Secret code: 
+        <input type="text" name="secretCode" id="secretCode" required>
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+    <br><br>
+    <a href="/logout">Logout</a>
+  </div>
+</body>
+</html>

@@ -1,5 +1,6 @@
 const db = require('../models/db/queries');
 const passport = require('../config/passport');
+const verifyCode = require('../utils/verifyCode');
 
 module.exports = {
   getIndex: (req, res) => {
@@ -16,6 +17,12 @@ module.exports = {
     res.send('welcome');
   },
   loginUser: (req, res) => {
-    res.send('homepage for logged in user');
-  }
+    res.render('welcome');
+  },
+  getJoinClubForm: (req, res) => {
+    res.render('welcome');
+  },
+  joinClub: [verifyCode, function(req, res) {
+    res.send('Club joined')
+  }]
 }
