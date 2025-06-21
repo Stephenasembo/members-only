@@ -12,5 +12,6 @@ router.post('/login', controller.loginUser);
 router.get('/welcome', controller.getJoinClubForm);
 router.post('/welcome', controller.joinClub);
 router.get('/homepage', controller.getHomepage);
+router.get('/logout', controller.logoutUser);
 
 module.exports = router;

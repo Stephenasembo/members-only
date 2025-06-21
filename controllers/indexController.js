@@ -33,5 +33,15 @@ module.exports = {
 
   joinClub: [verifyCode, getClubMessages],
 
-  getHomepage: [authorizeMember, getClubMessages]
+  getHomepage: [authorizeMember, getClubMessages],
+
+  logoutUser: (req, res, next) => {
+    req.logout((err) => {
+      if (err) return next(err);
+      req.session.destroy((err) => {
+        if (err) return next(err);
+        res.redirect('/login')
+      })
+    })
+  }
 }
