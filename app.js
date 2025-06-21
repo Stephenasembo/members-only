@@ -3,6 +3,20 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const indexRouter = require('./routes/indexRouter')
+const session = require('express-session');
+const passport = require('./config/passport');
+
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 24 * 60 * 60
+  },
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const assetsPath = path.join(__dirname, 'public')
 app.use(express.static(assetsPath));

@@ -1,4 +1,5 @@
 const db = require('../models/db/queries');
+const passport = require('../config/passport');
 
 module.exports = {
   getIndex: (req, res) => {
@@ -15,6 +16,6 @@ module.exports = {
     res.send('welcome');
   },
   loginUser: (req, res) => {
-    res.send('homepage');
+    res.send('homepage for logged in user');
   }
 }
