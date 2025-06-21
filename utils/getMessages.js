@@ -5,6 +5,5 @@ module.exports = async (req, res, next) => {
   for(const msg of messages) {
     msg.author = (await db.getUser(msg.user_id)).username;
   }
-  console.log(messages)
-  res.render('homepage', {messages})
+  res.render('homepage', {messages, user: req.user})
 }

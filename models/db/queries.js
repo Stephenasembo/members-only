@@ -70,10 +70,20 @@ const getMessages = async () => {
   return rows;
 }
 
+const updateMembershipStatus = async (id) => {
+  const SQL = `
+  UPDATE users
+  SET membership_status = 'member'
+  WHERE id = $1
+  `
+  await pool.query(SQL, [id]);
+}
+
 module.exports = {
   resetDb,
   createUser,
   createMessage,
   getUser,
   getMessages,
+  updateMembershipStatus,
 }

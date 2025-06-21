@@ -2,6 +2,7 @@ const db = require('../models/db/queries');
 const passport = require('../config/passport');
 const verifyCode = require('../utils/verifyCode');
 const getMessages = require('../utils/getMessages');
+const authorizeMember = require('../utils/authorizeMember');
 
 module.exports = {
   getIndex: (req, res) => {
@@ -13,18 +14,24 @@ module.exports = {
   getLoginForm: (req, res) => {
     res.render('login');
   },
-  createUser: async (req, res) => {
+  createUser: async (req, res, next) => {
     const user = await db.createUser(req.body);
     req.login(user, (err) => {
       if (err) return next(err);
-      return res.send('Logged in.');
+      res.redirect('/homepage');
     })
   },
-  loginUser: (req, res) => {
-    res.render('welcome');
-  },
+
+  loginUser: passport.authenticate('local', {
+      failureRedirect: '/login',
+      successRedirect: '/homepage'
+    }),
+  
   getJoinClubForm: (req, res) => {
     res.render('welcome');
   },
-  joinClub: [verifyCode, getMessages]
+
+  joinClub: [verifyCode, getMessages],
+
+  getHomepage: [authorizeMember, getMessages]
 }
