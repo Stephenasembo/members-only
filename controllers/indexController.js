@@ -1,6 +1,7 @@
 const db = require('../models/db/queries');
 const passport = require('../config/passport');
 const verifyCode = require('../utils/verifyCode');
+const getMessages = require('../utils/getMessages');
 
 module.exports = {
   getIndex: (req, res) => {
@@ -22,7 +23,5 @@ module.exports = {
   getJoinClubForm: (req, res) => {
     res.render('welcome');
   },
-  joinClub: [verifyCode, function(req, res) {
-    res.send('Club joined')
-  }]
+  joinClub: [verifyCode, getMessages]
 }

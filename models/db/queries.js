@@ -36,7 +36,7 @@ const createMessage = async (message) => {
   await pool.query(SQL, values);
 }
 
-const getUser = async (userId, username) => {
+const getUser = async (userId, username = null) => {
   if(userId) {
     const SQL = `
     SELECT * FROM users
@@ -53,9 +53,18 @@ const getUser = async (userId, username) => {
   return rows[0];
 }
 
+const getMessages = async () => {
+  const SQL = `
+  SELECT * FROM messages;
+  `
+  const { rows } = await pool.query(SQL);
+  return rows;
+}
+
 module.exports = {
   resetDb,
   createUser,
   createMessage,
   getUser,
+  getMessages,
 }
