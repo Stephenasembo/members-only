@@ -13,5 +13,7 @@ router.get('/welcome', controller.getJoinClubForm);
 router.post('/welcome', controller.joinClub);
 router.get('/homepage', controller.getHomepage);
 router.get('/logout', controller.logoutUser);
+router.get('/admin', controller.getAdminPage);
+router.get('/delete/:msgId', controller.deleteMessage);
 
 module.exports = router;

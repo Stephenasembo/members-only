@@ -19,6 +19,9 @@
             <% } else { %>
               <span>Author: *****</span>
               <% } %>
+          <% if(user.isadmin === true) { %>
+            <a href="/delete/<%= msg.id%>">Delete message</a>
+            <% } %>
         </div>
       <%})%>
     </div>

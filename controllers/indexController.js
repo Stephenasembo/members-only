@@ -3,6 +3,7 @@ const passport = require('../config/passport');
 const verifyCode = require('../utils/verifyCode');
 const getClubMessages = require('../utils/getClubMessages');
 const authorizeMember = require('../utils/authorizeMember');
+const authorizeAdmin = require('../utils/authorizeAdmin');
 
 module.exports = {
   getIndex: (req, res) => {
@@ -43,5 +44,12 @@ module.exports = {
         res.redirect('/login')
       })
     })
-  }
+  },
+
+  getAdminPage: [authorizeAdmin, getClubMessages],
+
+  deleteMessage: [authorizeAdmin, async (req, res, next) => {
+    await db.deleteMessage(req.params.msgId)
+    next()
+  }, getClubMessages]
 }
