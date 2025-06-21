@@ -14,15 +14,24 @@ const createUser = async (input) => {
   if(user.isAdmin === undefined) {
     user.isAdmin = false;
   }
-  const values = Object.values(user);
+  if(user.membershipStatus === undefined) {
+    user.membershipStatus = 'fresh';
+  }
+  const fullName = user.firstName + ' ' + user.lastName;
+  const {username, password, membershipStatus, isAdmin} = user;
+  const values = [fullName, username, password,
+    membershipStatus, isAdmin
+  ];
   const SQL = `
   INSERT INTO users
   (full_name, username, password,
   membership_status, isAdmin)
   VALUES
   ($1, $2, $3, $4, $5)
+  RETURNING *;
   `
-  await pool.query(SQL, values);
+  const { rows } = await pool.query(SQL, values);
+  return rows[0];
 }
 
 const createMessage = async (message) => {

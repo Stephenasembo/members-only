@@ -2,21 +2,24 @@ const db = require('./queries');
 
 const users = [
   {
-    fullName: 'John Doe',
+    firstName: 'John',
+    lastName: 'Doe',
     username: 'JD123',
     password: 'hello',
     membershipStatus: 'member',
     isAdmin: false,
   },
   {
-    fullName: 'Jane Smith',
+    firstName: 'Jane',
+    lastName: 'Smith',
     username: 'JS456',
     password: '1234',
     membershipStatus: 'member',
     isAdmin: true,
   },
   {
-    fullName: 'James Smith',
+    firstName: 'James',
+    lastName: 'Smith',
     username: 'bond123',
     password: 'bond123',
     membershipStatus: 'fresh',
