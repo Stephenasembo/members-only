@@ -5,7 +5,7 @@ module.exports = async (req, res, next) => {
   if(code === 'hello') {
     // Update membership status;
     await db.updateMembershipStatus(req.user.id); 
-    return next();
+    return res.redirect('/homepage');
   }
   res.send('Incorrect code!')
 }

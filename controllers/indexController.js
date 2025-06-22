@@ -32,7 +32,7 @@ module.exports = {
     res.render('welcome');
   },
 
-  joinClub: [verifyCode, getClubMessages],
+  joinClub: verifyCode,
 
   getHomepage: [authorizeMember, getClubMessages],
 
