@@ -1,6 +1,9 @@
 const db = require('../models/db/queries')
 
 module.exports = async (req, res, next) => {
+  if(!req.user) {
+    return res.redirect('/protected-route');
+  }
   const user = await db.getUser(req.user.id);
   if(user.membership_status === 'member') {
     return next()

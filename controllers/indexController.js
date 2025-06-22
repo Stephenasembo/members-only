@@ -29,9 +29,9 @@ module.exports = {
       successRedirect: '/homepage'
     }),
   
-  getJoinClubForm: (req, res) => {
+  getJoinClubForm: [authorizeMember, (req, res) => {
     res.render('welcome');
-  },
+  }],
 
   joinClub: verifyCode,
 
@@ -54,24 +54,29 @@ module.exports = {
     next()
   }, getClubMessages],
 
-  getMessageForm: (req, res, next) => {
+  getMessageForm: [authorizeMember,(req, res, next) => {
     res.render('new-message')
-  },
+  }],
 
-  createMessage: async (req, res, next) => {
+  createMessage: [authorizeMember, async (req, res, next) => {
     const message = req.body;
     message.user_id = Number(req.params.userId);
     message.time = new Date();
     await db.createMessage(message);
     res.redirect('/homepage')
-  },
+  }],
 
-  getAdminForm: (req, res, next) => {
+  getAdminForm: [authorizeMember, (req, res, next) => {
     res.render('admin-form');
-  },
-  makeAdmin: [verifyAdminCode, async (req, res, next) => {
+  }],
+
+  makeAdmin: [authorizeMember, verifyAdminCode, async (req, res, next) => {
     const userId = Number(req.params.userId);
     await db.updateAdminStatus(userId);
     res.redirect('/homepage');
   }],
+
+  getProtectedPage: (req, res, next) => {
+    res.render('protected-route');
+  }
 }
