@@ -16,6 +16,8 @@
           <p><%= msg.text %></p>
           <% if(msg.author !== undefined) { %>
               <span>Author: <%= msg.author%></span>
+              <br><br>
+              <span>Date posted: <%= msg.time%></span>
             <% } else { %>
               <span>Author: *****</span>
               <% } %>
