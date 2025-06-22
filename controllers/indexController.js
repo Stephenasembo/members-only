@@ -8,6 +8,9 @@ const verifyAdminCode = require('../utils/verifyAdminCode');
 
 module.exports = {
   getIndex: (req, res) => {
+    if(req.user) {
+      return res.redirect('/homepage')
+    }
     res.render('index');
   },
   getSignUpForm: (req, res) => {
