@@ -35,7 +35,8 @@ const createUser = async (input) => {
 }
 
 const createMessage = async (message) => {
-  const values = Object.values(message);
+  const { title, time, text, user_id } = message;
+  const values = [title, time, text, user_id];
   const SQL = `
   INSERT INTO messages
   (title, time, text, user_id)

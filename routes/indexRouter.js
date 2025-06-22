@@ -15,5 +15,7 @@ router.get('/homepage', controller.getHomepage);
 router.get('/logout', controller.logoutUser);
 router.get('/admin', controller.getAdminPage);
 router.get('/delete/:msgId', controller.deleteMessage);
+router.get('/new-message/:userId', controller.getMessageForm);
+router.post('/new-message/:userId', controller.createMessage);
 
 module.exports = router;

@@ -51,5 +51,17 @@ module.exports = {
   deleteMessage: [authorizeAdmin, async (req, res, next) => {
     await db.deleteMessage(req.params.msgId)
     next()
-  }, getClubMessages]
+  }, getClubMessages],
+
+  getMessageForm: (req, res, next) => {
+    res.render('new-message')
+  },
+
+  createMessage: async (req, res, next) => {
+    const message = req.body;
+    message.user_id = Number(req.params.userId);
+    message.time = new Date();
+    await db.createMessage(message);
+    res.redirect('/homepage')
+  }
 }
