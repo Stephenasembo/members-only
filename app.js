@@ -5,8 +5,17 @@ const app = express();
 const indexRouter = require('./routes/indexRouter')
 const session = require('express-session');
 const passport = require('./config/passport');
+const pgSession = require('connect-pg-simple')(session);
+const pool = require('./models/db/pool')
+
+const sessionStore = new pgSession({
+  createTableIfMissing: true,
+  pool,
+  tableName: 'user_sessions',
+})
 
 app.use(session({
+  store: sessionStore,
   secret: 'secret',
   resave: false,
   saveUninitialized: false,
