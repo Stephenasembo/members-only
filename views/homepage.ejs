@@ -32,7 +32,11 @@
         <p>Become a member to see the authors of the messages
           <a href="/welcome">here</a>
         </p>
-        <% } %>
+        <% } else if(user.isadmin === false){ %>
+          <p>If you are an admin register
+            <a href="/admin-registration/<%= user.id%>">here</a>
+          </p>
+          <% } %>
       <p>Create a new message <a href="/new-message/<%= user.id%>">here</a></p>
     </div>
     <a href="/logout">Logout</a>

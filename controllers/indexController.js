@@ -4,6 +4,7 @@ const verifyCode = require('../utils/verifyCode');
 const getClubMessages = require('../utils/getClubMessages');
 const authorizeMember = require('../utils/authorizeMember');
 const authorizeAdmin = require('../utils/authorizeAdmin');
+const verifyAdminCode = require('../utils/verifyAdminCode');
 
 module.exports = {
   getIndex: (req, res) => {
@@ -63,5 +64,14 @@ module.exports = {
     message.time = new Date();
     await db.createMessage(message);
     res.redirect('/homepage')
-  }
+  },
+
+  getAdminForm: (req, res, next) => {
+    res.render('admin-form');
+  },
+  makeAdmin: [verifyAdminCode, async (req, res, next) => {
+    const userId = Number(req.params.userId);
+    await db.updateAdminStatus(userId);
+    res.redirect('/homepage');
+  }],
 }

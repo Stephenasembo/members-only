@@ -17,5 +17,7 @@ router.get('/admin', controller.getAdminPage);
 router.get('/delete/:msgId', controller.deleteMessage);
 router.get('/new-message/:userId', controller.getMessageForm);
 router.post('/new-message/:userId', controller.createMessage);
+router.get('/admin-registration/:userId', controller.getAdminForm);
+router.post('/admin-registration/:userId', controller.makeAdmin);
 
 module.exports = router;

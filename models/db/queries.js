@@ -88,6 +88,15 @@ const deleteMessage = async (id) => {
   await pool.query(SQL, [id]);
 }
 
+const updateAdminStatus = async (id) => {
+  const SQL = `
+  UPDATE users
+  SET isadmin = true
+  WHERE id = $1;
+  `
+  await pool.query(SQL, [id]);
+}
+
 module.exports = {
   resetDb,
   createUser,
@@ -96,4 +105,5 @@ module.exports = {
   getMessages,
   updateMembershipStatus,
   deleteMessage,
+  updateAdminStatus,
 }
