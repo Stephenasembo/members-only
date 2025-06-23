@@ -6,7 +6,7 @@ const indexRouter = require('./routes/indexRouter')
 const session = require('express-session');
 const passport = require('./config/passport');
 const pgSession = require('connect-pg-simple')(session);
-const pool = require('./models/db/pool')
+const pool = require('./config/pool')
 
 const sessionStore = new pgSession({
   createTableIfMissing: true,
